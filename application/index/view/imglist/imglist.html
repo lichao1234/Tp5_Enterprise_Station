@@ -1,0 +1,59 @@
+{extend name="index/index" /}
+{block name='title'}
+<title>{$cates.catename}_{$confres.sitename}</title>
+{/block}
+{block name='main'}
+<div class="content">
+    <div class="fruit clearfix">
+        <p class="mianbaoxie">当前位置：<a href="/">首页</a> &gt; {$cates.catename}</p>
+        <div class="fruit_title">
+            {if condition="$cates.id eq 3"}
+                <p class="en_title">INSPIRATION TEA</p>
+                <p class="zh_title">- 灵感之茶 -</p>
+                <span>Heekcaa喜茶：一份带有浓密情谊的奶茶，舒适而美味，甜蜜且温馨。</span> </div>
+            {else/}
+                <p class="en_title">XI CHA</p>
+                <p class="zh_title">- 寻找喜茶 -</p>
+                <span>Heekcaa喜茶：在这些地方可以喝到你喜爱的喜茶</span> </div>
+            {/if}
+        <ul class="pro_fruit centerr">
+            {volist name="new" id="vo"}
+                <li class="fruit_con">
+                    <div><a href="{:url('article/index',array('id'=>$vo['id']))}" rel="nofollow"><img src="{$vo.thumb}" style="width: 270px;height: 270px;" alt="{$vo.title}"></a></div>
+                    <a href="{:url('article/index',array('id'=>$vo['id']))}">
+                        <span class="pro_entiter"><p>{$vo.desc}</p></span>
+                        <p class="pro_zhtiter">{$vo.title}</p>
+                    </a>
+                </li>
+            {/volist}
+            <p>（注意：通过百度翻译而来，如有出入请看中文！）</p>
+        </ul>
+        <style>
+            /*分页*/
+
+            .pagination li {display: inline-block;margin-right: -1px;padding: 5px;border: 1px solid #e2e2e2;min-width: 20px;text-align: center;}
+            .pagination li.active {background: #009688;color: #fff;border: 1px solid #009688;}
+            .pagination li a {display: block;text-align: center;}
+        </style>
+        <div style="margin-top: 30px;text-align: center;">
+            {$page}
+        </div>
+    </div>
+    <div class="clear"></div>
+</div>
+<div class="team">
+    <div class="team_title fruit_title">
+        <p class="zh_title">- 大家最关心 -</p>
+    </div>
+    <div class="team1">
+        <div class="team1_con clear">
+            {volist name="news" id="vo"}
+            <div class="team1_word1">
+                <a href="{:url('article/index',array('id'=>$vo['id']))}"><p>{$vo.title|mb_substr=0,18,'utf-8'}...</p>
+                    <p>{$vo.desc|mb_substr=0,30,'utf-8'}...</p></a>
+            </div>
+            {/volist}
+        </div>
+    </div>
+</div>
+{/block}

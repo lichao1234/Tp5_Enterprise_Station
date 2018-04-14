@@ -1,0 +1,283 @@
+﻿<html>﻿
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    {block name='title'}
+        <title>{$confres.sitename}</title>
+    {/block}
+    <meta name="keywords" content="{$confres.keywords}" />
+    <meta name="description" content="{$confres.desc}" />
+    <meta name="viewport" content="initial-scale=1.0,user-scalable=no,minimum-scale=1.0, maximum-scale=1.0,width=device-width">
+    <link rel="shortcut icon" href="index_static/images/logo.png" type="image/x-icon" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="yes" name="apple-touch-fullscreen" />
+    <meta content="telephone=no,email=no" name="format-detection" />
+    <meta content="fullscreen=yes,preventMove=no" name="ML-Config" />
+    <meta http-equiv="Expires" content="-1" />
+    <meta http-equiv="pragram" content="no-cache" />
+    <link rel="stylesheet" type="text/css" href="index_static/css/style.css" tppabs="css/style.css">
+    <script type="text/javascript" src="index_static/js/jquery.js"></script>
+    <script src="index_static/js/push.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        var detector = navigator.userAgent,
+            isAndroid = /Android (\d+\.\d+)/.test(detector),
+            version = parseFloat(RegExp.$1),
+            phoneScale = parseInt(window.screen.width)/640;
+        if(isAndroid){
+            if(version>2.3){
+                document.write('<meta name="viewport" content="width=640, minimum-scale = '+ phoneScale +', maximum-scale = '+ phoneScale +', target-densitydpi=device-dpi">');
+            }else{
+                document.write('<meta name="viewport" content="width=640, target-densitydpi=device-dpi">');
+            }
+        }else{
+            document.write('<meta name="viewport" content="width=640, user-scalable=no, target-densitydpi=device-dpi">');
+        }
+        //微信去掉下方刷新栏
+        if(navigator.userAgent.indexOf('MicroMessenger') >= 0){
+            document.addEventListener('WeixinJSBridgeReady', function() {
+                //WeixinJSBridge.call('hideToolbar');
+            });
+        }
+    </script>
+</head>
+<body onselectstart="return false">
+<script>
+    $(function(){
+        $(".menu .ml").click(function(){
+
+            $(".nav").css("display","block");
+            $(this).css("display","none");
+            $(".menu .gb").css("display","block");
+        })
+
+        $(".menu .gb").click(function(){
+
+            $(".nav").css("display","none");
+            $(this).css("display","none");
+            $(".menu .ml").css("display","block");
+        })
+
+    })
+</script>
+<div class="nlc_h">
+    <div class="logo"><a href="/wap" tppabs=""><img src="index_static/images/logo.png" tppabs="images/logo.png" width="188" height="60" alt="喜茶logo"></a></div>
+    <div class="menu"> <a href="javascript:void(0);">
+        <div class="ml"> <img src="index_static/images/dh1.png" tppabs="images/dh1.png" width="30" height="31" alt="下拉菜单"/> </div>
+    </a> <a href="javascript:void(0);">
+        <div class="gb"> <img src="index_static/images/dh2.png" tppabs="images/dh2.png" width="30" height="31" alt="关闭下拉菜单"/> </div>
+    </a> </div>
+</div>
+<div class="nav">
+    <ul class="nav_in">
+        <li><a href="/wap" tppabs="" >网站首页</a></li>
+        {volist name="recIndex" id="vo"}
+            <li><a href="{if condition='$vo.type eq 1'}{:url('artlist/index',array('id'=>$vo['id']))}{elseif condition='$vo.type eq 3'}{:url('imglist/index',array('id'=>$vo['id']))}{else /}{:url('page/index',array('id'=>$vo['id']))}{/if}" tppabs="about.php" >{$vo.catename}</a></li>
+        {/volist}
+    </ul>
+</div>
+{block name='main'}
+<div class="n640 ix_about t100"> <img src="index_static/images/img.png" tppabs="images/img.png" width="466" height="277" class="ban_img" alt="喜茶官网banner"/>
+    <div class="wz">喜茶茶汤 100° 高温水，60s 高压萃取<br />每个茶袋只用一次，最大程度保证茶香</div>
+    <p>HEEKCAA喜茶(2017更名为<喜茶Heytea>)发展至今，实属不易，短短几年间数次更换品牌logo名称。喜茶发展之初原名为——皇茶，自开第一家店面以来，就备受青睐和关注，导致品牌名称被相继模仿，为了避免山寨产品以次充好，我们决定更换商标，几次尝试之后，由于”皇茶”不能被注册，创始人聂云宸决定放弃这个商标，于2016年出确定品牌名称——HEEKCAA喜茶，随即将原有的50多件门店全部更换，以杜绝山寨商家以此充好。目前我们的产品主要以奶茶，甜点小吃等，生意异常的火爆，随处可见在喜茶店铺门前排队买奶茶的状况。这种状况给了我们很积极的心态，我们计划今年新开20至30家加盟店铺，以满足对喜茶热爱的忠实粉丝，同样也期待与您的真诚合作，需要加盟喜茶请联系我们。</p>
+    <a class="m_about" href="{:url('page/index',array('id'=>1))}">查看更多</a> </div>
+<div class="n640">
+    <div class="n640"><img src="index_static/images/nlc_02.jpg" tppabs="images/nlc_02.jpg" width="640" height="330" /></div>
+
+    <div class="n640">
+        <div class="tabBar">
+            <div class="hd">
+                <ul>
+                    <li class="on">喜茶专访</li>
+                    <li>喜茶声明</li>
+                </ul>
+            </div>
+            <div class="bd">
+                <div class="conWrap">
+                    <div class="con">
+                        <ul>
+                            {volist name='news' id='vo'}
+                                <li><span>01-08</span>
+                                    [<b>热度：{$vo.click}</b>]&nbsp;<a href="{:url('article/index',array('id'=>$vo['id']))}"  title="{$vo.title}">{$vo.title|mb_substr=0,20,'utf-8'}...</a>
+                                </li>
+                            {/volist}
+                        </ul>
+                        <div class="in_more2"> <a href="{:url('artlist/index',array('id'=>2))}" tppabs="zfnews.php">查看更多></a> </div>
+                    </div>
+                    <div class="con">
+                        <p><strong>致热爱喜茶的朋友：</strong></p>
+                        <p>连日以来，有很多热爱喜茶的朋友，在社交平台上晒出和喜茶&ldquo;长得&rdquo;很像的各类图片，积极地向我们举报山寨现象，还有向我们求证喜茶是否开到了其所在的城市。</p>
+                        <p><strong>1.目前喜茶在香港、澳门以及海外地区没有开设任何分店</strong>，香港、美国、韩国、加拿大、泰国、马来西亚等地的&ldquo;喜茶&rdquo;与我们没有任何关系。我们在上述地区，均已进行商标注册申请，并将追究相关侵权店铺的法律责任。&nbsp;</p>
+                        <p><strong>2.我司拥有中文「喜茶」、英文「HEYTEA」、「HEEKCAA」的完整商标权益</strong>，其他任何在&ldquo;喜茶&rdquo;添加前缀或后缀，或与「喜茶」、「HEYTEA」及「HEEKCAA」类似或近似的商标均与我们无关，请大家认准「喜茶HEYTEA」，别喝到假的喜茶了。</p>
+                    </div>
+                </div>
+            </div>
+            <script type="text/javascript">
+                $(document).ready(function(){
+                    $(".tabBar").slide({
+                        mainCell:".conWrap",
+                        effect:"left",
+                        trigger:"click",
+                        pnLoop:false
+                    });
+                });
+            </script>
+            <script type="text/javascript" src="index_static/js/Super.js" tppabs="js/Super.js"></script>
+        </div>
+    </div>
+
+    <div class="n640 jmzz">
+        <ul>
+            <li class="j01">
+                <h3>喜茶产品</h3>
+                <img src="index_static/images/z2.png" tppabs="images/z2.png" width="80" height="80" />
+                <p>★ HEELCAA喜茶对美味产品的研发能力，让新品层出不穷 为各加盟店源源不断推出新产品提供有力保证。</p>
+            </li>
+            <li class="j02">
+                <h3>喜茶品牌升级</h3>
+                <img src="index_static/images/z3.png" tppabs="images/z3.png" width="80" height="80" />
+                <p>★ 一路坎坷至今<br />2012年→皇茶新世代茶饮<br />
+                    2013年→皇茶Royaltea<br />
+                    2014年→Royaltea皇茶<br />
+                    2016年→HEEKCAA喜茶<br />
+                    2017年→HEYTEA喜茶</p>
+            </li>
+            <li class="j03">
+                <h3>加盟流程</h3>
+                <img src="index_static/images/z1.png" tppabs="images/z1.png" width="80" height="80" />
+                <p>了解喜茶品牌，热爱我们品牌，来电咨询或到在线留言，确定加盟，签订合同，进行专业老师对产品的培训及经营的培训，考核通过后，总部最加盟商选址及店面装修的指导，试营业、正式营业。</p>
+            </li>
+        </ul>
+    </div>
+    <div class="n640 jmore"> <a href="{:url('page/index',array('id'=>1))}" tppabs="about.php" rel="nofollow">了解更多></a> </div>
+</div>
+<div class="n640">
+    <div class="n640"><img src="index_static/images/nlc_04.jpg" tppabs="images/nlc_04.jpg" width="640" height="240" /></div>
+    <div class="n640">
+        <div class="tabBar">
+            <div class="hd">
+                <ul>
+                    <li class="on">新闻动态</li>
+                    <li>产品展示</li>
+                </ul>
+            </div>
+            <div class="bd">
+                <div class="conWrap">
+                    <div class="con">
+                        <ul>
+                            {volist name="core" id="vo"}
+                                <li><span>{$vo.time|date='m-d',###}</span>
+                                    [<b>热度：{$vo.click}</b>]&nbsp;<a href="{:url('article/index',array('id'=>$vo['id']))}">{$vo.title|mb_substr=0,20,'utf-8'}</a>
+                                </li>
+                            {/volist}
+                        </ul>
+                        <div class="in_more2"> <a href="{:url('artlist/index',array('id'=>7))}">查看更多></a> </div>
+                    </div>
+                    <div class="con">
+                        <ul>
+                            {volist name="product" id="vo"}
+                                <li class="proo"> <a href="{:url('article/index',array('id'=>$vo['id']))}"> <img src="{$vo.thumb}" alt="{$vo.title}" width="160" height="110"/>
+                                    <p>{$vo.title}</p>
+                                </a>
+                                </li>
+                            {/volist}
+                            <div class="clear"></div>
+                        </ul>
+                        <div class="main in_more2"> <a href="{:url('imglist/index',array('id'=>3))}">查看更多></a> </div>
+                    </div>
+                </div>
+            </div>
+            <script type="text/javascript">
+                $(document).ready(function(){
+                    $(".tabBar").slide({
+                        mainCell:".conWrap",
+                        effect:"left",
+                        trigger:"click",
+                        pnLoop:false
+                    });
+                });
+            </script>
+            <script type="text/javascript" src="index_static/js/Super.js" tppabs="js/Super.js"></script>
+        </div>
+    </div>
+</div>
+<div class="n640 n_message">
+    <div class="n600 n_bt"> 我们与<b>您携手</b>共同创富
+        <hr />
+    </div>
+    <div class="n600">
+        <p class="m_mm">咨询喜茶加盟电话太多，想了解喜茶加盟相关信息请留言给我们，我们将会在<b>24小时之内</b>答复您，让您对此项目获得更多了解。</p>
+    </div>
+    <div class="n600">
+        <form action="http://www.1588sjw.com/plus/diy.php" id="gform" method="POST"  name="gform">
+            <p class="m50">
+                <input id="name" name="xingming" placeholder="姓名"  type="text">
+                姓名:</p>
+            <input name="action" value="post" type="hidden">
+            <input name="diyid" value="2" type="hidden">
+            <input name="do" value="2" type="hidden">
+            <input name="dede_fieldshash" value="77f1c1cac92af51a1105a4fe4bf5570b" type="hidden">
+            <input name="dede_fields" value="xingming,text;shouji,text;youxiang,text;dizhi,text;liuyan,multitext" type="hidden">
+            <p class="m50">
+                <input id="tel" name="shouji" maxlength="11" placeholder="电话号码" size="30" required type="text">
+                电话:</p>
+            <p class="m100">
+                <textarea id="content" placeholder="我对【喜茶】挺感兴趣，请发下资料给我！" required name="liuyan"></textarea>
+                留言:</p>
+            <p class="m50">
+                <input type="submit" name="button" style="cursor:pointer;" onClick="return FromSubmit();" value="确定提交">
+            </p>
+        </form>
+        <script type="text/javascript">
+            function FromSubmit(){
+                var name = document.getElementById("name").value;
+                var tel = document.getElementById("tel").value;
+                var content = document.getElementById("content").value;
+
+                if (tel == "" || content == "") {
+                    alert("请填写必要的内容");
+                    return false;
+                }
+                if(!(/^1[3|5][0-9]\d{4,8}$/.test(tel))){
+                    alert("请输入正确的手机号");
+                    return false;
+                }
+                if(name.length > 30)
+                {
+                    alert("姓名过长");
+                    return false;
+                }
+                if(content.length > 150)
+                {
+                    alert("留言内容过长");
+                    return false;
+                }
+                var mydate = new Date();
+                var year = mydate.getFullYear();
+                var mon = mydate.getMonth()+1;
+                var day = mydate.getDate();
+                var h = mydate.getHours();
+                var m = mydate.getMinutes();
+                var time = year+"-"+mon+"-"+day+" "+h+":"+m;
+                url = window.location.href;
+                var flag = "_来源:"+url+"_时间:"+time;
+                tel = tel+flag
+                document.getElementById("tel").value=tel;
+                return true;
+            }
+        </script>
+    </div>
+</div>
+{/block}
+<div class="n640 foot"> COPYRIGHT (©) 2017 HEEKCAA喜茶加盟官. 注意：加盟喜茶，请认准HEYTEA官网 | </div>
+<div class="n640 footer"> <a class="f_1" href="/wap" tppabs="">喜茶首页</a> <a class="f_2" href="{:url('artlist/index',array('id'=>4))}" tppabs="stores.php">门店查询</a> <a class="f_3" href="{:url('page/index',array('id'=>6))}" tppabs="contact.php">索取资料</a> </div>
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "hm.js-4d53eae9e1cfaa8026816b5ca6d86b26"/*tpa=https://hm.baidu.com/hm.js?4d53eae9e1cfaa8026816b5ca6d86b26*/;
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script></body>
+</html>

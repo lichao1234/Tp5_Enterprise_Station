@@ -1,0 +1,50 @@
+{extend name="index/index" /}
+{block name='title'}
+<title>{$cates.catename}_{$confres.sitename}</title>
+{/block}
+{block name='main'}
+<div class="content">
+  <div class="fruit clearfix">
+    <p class="mianbaoxie">当前位置：<a href="/">首页</a> &gt; {$cates.catename}</p>
+    <div class="fruit_title">
+      <p class="en_title">STORY TEA</p>
+      <p class="zh_title">- 故事 -</p>
+      <span>答案有千千万，有心有情的人总能捕获不一样的灵感！</span> </div>
+    <div class="news">
+      <div class="news_con">
+        {volist name="new" id="vo"}
+          <p><a href="{:url('article/index',array('id'=>$vo['id']))}">{$vo.title}</a>
+            <small>{$vo.time|date='Y-m-d',###}</small>
+          </p>
+        {/volist}
+      </div>
+      <style>
+        /*分页*/
+
+        .pagination li {display: inline-block;margin-right: -1px;padding: 5px;border: 1px solid #e2e2e2;min-width: 20px;text-align: center;}
+        .pagination li.active {background: #009688;color: #fff;border: 1px solid #009688;}
+        .pagination li a {display: block;text-align: center;}
+      </style>
+      <div style="margin-top: 30px;text-align: center;">
+        {$page}
+      </div>
+    </div>
+  </div>
+  <div class="clear"></div>
+</div>
+<div class="team">
+  <div class="team_title fruit_title">
+    <p class="zh_title"><a href="news.php">- 推荐新闻 -</a></p>
+  </div>
+  <div class="team1">
+    <div class="team1_con clear">
+      {volist name="news" id="vo"}
+      <div class="team1_word1">
+        <a href="{:url('article/index',array('id'=>$vo['id']))}"><p>{$vo.title|mb_substr=0,18,'utf-8'}...</p>
+          <p>{$vo.desc|mb_substr=0,30,'utf-8'}...</p></a>
+      </div>
+      {/volist}
+    </div>
+  </div>
+</div>
+{/block}

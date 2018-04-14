@@ -1,0 +1,77 @@
+﻿{extend name="index/index" /}
+{block name='title'}
+<title>{$cates.catename}_{$confres.sitename}</title>
+{/block}
+{block name='main'}
+<div class="n640 list_b">当前位置：<a href="/wap">heekcaa喜茶首页</a> &gt; {$cates.catename}
+	<p style=" float:right; border-bottom:1px solid #e4e4e4;"><a href="javascript:history.back()">返回上一页</a></p>
+</div>
+{if condition="$cates.id neq 6"}
+	<div class="n640 ny">
+		<div class="main">
+			{$cates.content}
+		</div>
+	</div>
+{else/}
+<div class="n640"><img src="index_static/images/nlc_04.jpg" width="640" height="240" /></div>
+<div class="n640 n_message">
+	<div class="n600 n_bt"> 我们与<b>您携手</b>共同创富
+		<hr />
+	</div>
+	<div class="n600">
+		<p class="m_mm">咨询喜茶加盟电话太多，想了解喜茶加盟相关信息请留言给我们，我们将会在<b>24小时之内</b>答复您，让您对此项目获得更多了解。</p>
+	</div>
+	<div class="n600">
+		<form action="http://www.1588sjw.com/plus/diy.php" id="gform" method="POST"  name="gform">
+			<p class="m50"><input id="name" name="xingming" placeholder="姓名"  type="text">姓名:</p>
+			<input name="action" value="post" type="hidden">
+			<input name="diyid" value="2" type="hidden">
+			<input name="do" value="2" type="hidden">
+			<input name="dede_fieldshash" value="77f1c1cac92af51a1105a4fe4bf5570b" type="hidden">
+			<input name="dede_fields" value="xingming,text;shouji,text;youxiang,text;dizhi,text;liuyan,multitext" type="hidden">
+			<p class="m50"><input id="tel" name="shouji" maxlength="11" placeholder="电话号码" size="30" required type="text">电话:</p>
+			<p class="m100"><textarea id="content" placeholder="我对【喜茶】挺感兴趣，请发下资料给我！" required name="liuyan"></textarea>留言:</p>
+			<p class="m50"><input type="submit" name="button"  onClick="return FromSubmit();" value="确定提交"></p>
+		</form>
+		<script type="text/javascript">
+            function FromSubmit(){
+                var name = document.getElementById("name").value;
+                var tel = document.getElementById("tel").value;
+                var content = document.getElementById("content").value;
+
+                if (tel == "" || content == "") {
+                    alert("请填写必要的内容");
+                    return false;
+                }
+                if(!(/^1[3|5][0-9]\d{4,8}$/.test(tel))){
+                    alert("请输入正确的手机号");
+                    return false;
+                }
+                if(name.length > 30)
+                {
+                    alert("姓名过长");
+                    return false;
+                }
+                if(content.length > 150)
+                {
+                    alert("留言内容过长");
+                    return false;
+                }
+                var mydate = new Date();
+                var year = mydate.getFullYear();
+                var mon = mydate.getMonth()+1;
+                var day = mydate.getDate();
+                var h = mydate.getHours();
+                var m = mydate.getMinutes();
+                var time = year+"-"+mon+"-"+day+" "+h+":"+m;
+                url = window.location.href;
+                var flag = "_来源:"+url+"_时间:"+time;
+                tel = tel+flag
+                document.getElementById("tel").value=tel;
+                return true;
+            }
+		</script>
+	</div>
+</div>
+{/if}
+{/block}
