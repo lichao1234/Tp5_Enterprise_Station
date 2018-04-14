@@ -1,0 +1,38 @@
+{extend name="index/index" /}
+{block name='title'}
+<title>{$cates.catename}_{$confres.sitename}</title>
+{/block}
+{block name='main'}
+<div class="n640 list_b">当前位置：<a href="/wap">heekcaa喜茶首页</a> &gt; {$cates.catename}
+    <p style=" float:right; border-bottom:1px solid #e4e4e4;"><a href="javascript:history.back()">返回上一页</a></p></div>
+<div class="n640"><img src="index_static/images/nlc_04.jpg" width="640" height="240" /></div>
+<div class="n640 list">
+    <div class="main">
+        <div class="conWrap">
+            <div class="con">
+                <ul>
+                    {volist name="new" id="vo"}
+                        <li class="proo"> <a href="{:url('article/index',array('id'=>$vo['id']))}"> <img src="{$vo.thumb}" alt="{$vo.title}" width="280" height="180"/>
+                            <p>{$vo.title} </p>
+                        </a>
+                        </li>
+                    {/volist}
+                    <div class="clear"></div>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="dede_pages">
+        <style>
+            /*分页*/
+
+            .pagination li {display: inline-block;margin-right: -1px;padding: 5px;border: 1px solid #e2e2e2;min-width: 20px;text-align: center;}
+            .pagination li.active {background: #009688;color: #fff;border: 1px solid #009688;}
+            .pagination li a {display: block;text-align: center;}
+        </style>
+        <div style="margin-top: 30px;text-align: center;">
+            {$page}
+        </div>
+    </div>
+</div>
+{/block}
